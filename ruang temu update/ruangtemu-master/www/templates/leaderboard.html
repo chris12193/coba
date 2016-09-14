@@ -1,0 +1,56 @@
+<ion-view view-title="Leaderboard" cache-view="false">
+<ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: white;" ng-class="{'margin':myLeaderboardend == true}" >
+
+<div style="background-image: url('img/background-leaderboard.png'); height:180px;padding-top:10px;">
+	<div class="row" style="margin-top:8px;">
+		<div class="col" style="margin-top:20px;">
+			<center>
+			<div style="background-image: linear-gradient(to bottom, rgba(60,113,182,0.2), rgba(60,113,182,0.2)), url('img/ben.png');width:60px;height:60px;background-size:cover;border-radius:50%;"></div>
+			<div style="color:white;background-color:#24afe5;border-radius:50%;width:20px;height:20px;font-size:12px;margin:-20px 0px 0px 50px;">2</div>
+			<p style="color:white; font-size:17px; margin-top:10px;">{{pemenangKedua.username}}</p>
+			<p style="color:rgb(225, 225, 225); font-size:12px; margin-top:-8px;">{{pemenangKedua.poin}} points</p>
+			</center>
+		</div>
+		<div class="col" style="margin-bottom:10px;">
+			<center>
+			<div style="background-image: linear-gradient(to bottom, rgba(182, 138, 60, 0.2), rgba(182, 138, 60, 0.2)), url('img/adam.jpg');width:80px;height:80px;background-size:cover;border-radius:50%;"></div>
+			<div style="color:white;background-color:#24afe5;border-radius:50%;width:20px;height:20px;font-size:12px;margin:-20px 0px 0px 50px;">1</div>
+			<p style="color:white; font-size:17px; margin-top:10px;">{{pemenangPertama.username}}</p>
+			<p style="color:rgb(225, 225, 225); font-size:12px; margin-top:-8px;">{{pemenangPertama.poin}} points</p>
+			</center>
+		</div>
+		<div class="col" style="margin-top:20px;">
+			<center>
+			<div style="background-image: linear-gradient(to bottom, rgba(60,113,182,0.2), rgba(60,113,182,0.2)), url('img/ben.png');width:60px;height:60px;background-size:cover;border-radius:50%;"></div>
+			<div style="color:white;background-color:#24afe5;border-radius:50%;width:20px;height:20px;font-size:12px;margin:-20px 0px 0px 50px;">3</div>
+			<p style="color:white; font-size:17px; margin-top:10px;">{{pemenangKetiga.username}}</p>
+			<p style="color:rgb(225, 225, 225); font-size:12px; margin-top:-8px;">{{pemenangKetiga.poin}} points</p>
+			</center>
+		</div>
+	</div>
+</div>
+	<div ng-repeat="data in leaderboard | limitTo: 7 : 3" class="list" ng-class="{'blue':menuProfile.username == data.username}" style="padding:2px 0px 15px 0px;margin:0">
+	   	<h4 style="margin-bottom:-20px; font-size:17px; margin-top:30px; font-weight:unset; padding-bottom:30px; margin-bottom:-78px;padding-left:20px;">{{$index+4}}</h4>
+		<a class="item item-avatar" style="padding-bottom:0px; margin-bottom:-29px; margin-top:-45px; margin-left:20px;">
+		  <img ng-src="img\adam.jpg" style="margin-left:20px;">
+		  <h2 style="margin-bottom:6px;">{{data.username}}</h2>
+		  <div class="item item-text-wrap" style="padding:0px;">
+		  <p style="padding-right:16px;">{{data.poin}} points . {{data.badgeCount}} badges</p>
+		  </div>  
+		</a>
+	</div> 
+
+</ion-content>
+	<div ng-show="myLeaderboardend == true" class="list blue-fixed">
+	   	<div class="list blue-fixed">
+		   	<h4 style="margin-bottom:-20px; font-size:17px; margin-top:30px; font-weight:unset; padding-bottom:30px; margin-bottom:-78px;padding-left:20px;">{{myLeaderboard.position}}</h4>
+			<a class="item item-avatar" style="padding-bottom:0px; margin-bottom:-29px; margin-top:-45px; margin-left:20px;">
+			  <img ng-src="img\adam.jpg" style="margin-left:20px;">
+			  <h2 style="margin-bottom:6px;">{{myLeaderboard.username}}</h2>
+			  <div class="item item-text-wrap" style="padding:0px;">
+			  <p style="padding-right:16px;">{{myLeaderboard.poin}} points . {{myLeaderboard.badgeCount}} badges</p>
+			  </div>  
+			</a>
+		</div> 
+	</div>
+</ion-view>

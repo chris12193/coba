@@ -1,0 +1,54 @@
+<ion-view view-title="View Post" cache-view="false">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear icon-button mdi mdi-chevron-left" ng-click="back()" style="font-size:25px"></button>
+  </ion-nav-buttons>
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #ececec;">
+    <div class="list card" class="padding" style="margin:11px; margin-bottom:60px;">
+      <div class="item item-avatar" style="min-height: 60px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img src="img\ben.png">
+        <h2>{{itemData.writer}}</h2>
+        <p>{{itemData.date | date:'yyyy-MM-dd, h:mm a'}}</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img class="full-image" ng-src="{{itemData.photo}}" ng-hide="itemData.photo=='n/a'||itemData.photo==undefined" style="height:250px;">
+        <h1 style="padding-left:16px; padding-right:16px; margin-top:8px; margin-bottom: 8px; font-size:24px">
+        {{itemData.title}}
+        </h1>
+        <p style="padding-left:16px; padding-right:16px; color:black; margin-top:0px; text-align:justify">
+        {{itemData.content}}
+        </p>
+        <p style="padding-left:16px; padding-right:16px; margin-bottom:5px; color:black;">
+          <a class="subdued" style="font-size:12px;">{{jumlahLike.count}} like</a>
+          <a class="subdued" style="font-size:12px;">{{jumlahKomentar.count}} comment</a>
+          <a class="subdued" style="font-size:12px;">{{jumlahSharer.count}} share</a>
+        </p>
+        <div class="item tabs tabs-secondary tabs-icon-left" style="border-top: 1px solid rgb(242, 242, 242); margin-bottom:-10px;">
+          <a class="tab-item" ng-model="checked" ng-click="addLike()" ng-hide="checked==true" ng-show="checked==false" style="font-size: 25px">
+            <i class="mdi mdi-heart-outline" style="font-size: 25px"></i>
+          </a>
+          <a class="tab-item" ng-model="checked" ng-click="addUnlike()" ng-show="checked==true" ng-hide="checked==false" style="color:rgb(15, 140, 189);font-size: 25px">
+            <i class="mdi mdi-heart" style="font-size: 25px"></i>
+          </a>
+          <a class="tab-item" ng-controller="PostDetailCtrl" ng-click="shareNative()" style="font-size:25px">
+            <i class="mdi mdi-share-variant" style="font-size: 25px"></i>
+          </a>
+        </div>
+      </div>
+      <div class="list" id="komentar" ng-repeat="data in komentar">
+        <a class="item item-avatar" style="padding-bottom:0px; margin-bottom:-10px; margin-top:-5px;">
+        <img ng-src="img\adam.jpg">
+        <h2>{{data.employeeName}}</h2>
+        <div class="item item-text-wrap" style="padding:0px;">
+        <p style="padding-right:16px;">{{data.content}}</p>
+        </div>  
+        </a>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer" style="position:fixed; height:50px;background-color: white !important">
+    <p class="item item-icon-left item-icon-right" style="padding:0px;">
+      <textarea id="comment" ng-model="formKomentar.content" placeholder="Enter your comment here..." style="width:85%; height:50px;padding:10px"></textarea>
+      <ion-button type="submit" ng-show="formKomentar.content.length" ng-click="addKomentar()" class="icon mdi mdi-send" style="color:#24afe5; height:50px;">
+      </ion-button>
+  </div>
+</ion-view>

@@ -1,0 +1,23 @@
+<ion-view view-title="{{otherProfile.username}}" cache-view="false" style="margin-bottom:110px;">
+  <ion-nav-buttons side="left">
+  <button class="button button-clear icon-button mdi mdi-arrow-left" onclick="location.href='#/app/message'"></button>
+  </ion-nav-buttons>
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #F1F5F8;">
+  <div class="scroll" style="margin-bottom:110px;">
+
+  <div class="div-left" ng-repeat="data in newMessage" ng-class="{'div-right':profile.username === data.sender}" >
+     <div ng-class="profile.username === data.sender? 'bubble-right' : 'bubble-left'">
+       <div class="content-msg">{{data.content}}</div>
+       <sub>{{data.date | date:'yyyy-MM-dd, h:mm a'}}</sub>
+     </div>
+  </div>
+
+  </div>
+  </ion-content>
+  <div class="bar bar-footer bar-balanced" style="position:fixed; height:50px;background-color: #fff !important">
+    <p class="item item-icon-left item-icon-right" style="padding:0px;">
+      <textarea id="comment" ng-model="dataMessage.content" placeholder="Type your message..." style="width:85%; height:50px;padding:10px"></textarea>
+      <ion-button type="submit" ng-show="dataMessage.content.length" ng-click="addMessage()" class="icon mdi mdi-send" style="color:#24afe5; height:50px;"></ion-button>
+    </p>
+  </div>
+</ion-view>

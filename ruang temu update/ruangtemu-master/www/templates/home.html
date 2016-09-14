@@ -1,0 +1,56 @@
+<ion-view view-title="Timeline" title-center cache-view="false">
+ <!-- <search-bar ng-model="search"></search-bar> -->
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon-button mdi mdi-filter-outline button-filter" onclick="document.getElementById('filterbutton').click()" style="min-height:0;font-size:25px"></button>
+    <button class="button button-clear icon-button mdi mdi-magnify button-search" onclick="document.getElementById('searchbutton').click()" style="min-height:0;font-size:25px"></button>
+  </ion-nav-buttons>
+  <!-- Fake button -->
+  <button ng-click="searchbutton = !searchbutton; filterbutton = false" id="searchbutton" style="display:none"></button>
+  <button ng-click="filterbutton = !filterbutton; searchbutton = false" id="filterbutton" style="display:none"></button>
+  <!-- Search bar -->
+  <div class="bar item-input-inset" style="border:none;margin-top:40px" ng-show="searchbutton">
+    <i class="icon ion-ios-search placeholder-icon" style="background:white; height:50px; padding-top:16px; padding-left:11px;"></i><input id="search" type="text" placeholder=" Search..." ng-model="search" style="width:100%; height:60px;" />
+  </div>
+
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #ececec; z-index:0; margin-top:0px;">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()" refreshing-text="Fetching ..." refreshing-icon="ion-loading-b"></ion-refresher>
+
+    <!-- Filter bar -->
+    <ul ng-show="filterbutton" class="list" style="background:white; position:fixed;top:40px;width: 100%; max-height: 200px; overflow:scroll; z-index:9">
+      <ion-list>
+        <ion-radio ng-click="selection('jti')">JTI</ion-radio>
+        <ion-radio ng-click="selection('gbs')">GBS</ion-radio>
+      </ion-list>
+    </ul>
+
+    <!--List Posting-->
+    <div class="list card" ng-repeat="data in arr | filter:search | filter:division" style="margin:11px;">
+      <div class="item item-avatar" style="min-height: 60px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img ng-src="img/ben.png">
+        <h2 ng-click="userDetail('{{data.writer}}')">{{data.writer}}</h2>
+        <p>{{data.date | date:'yyyy-MM-dd, h:mm a'}}</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid; border-color: #ececec;">
+        <img class="full-image" ng-src="{{data.photo}}" ng-hide="data.photo=='n/a'||data.photo==undefined" style="height:250px;">
+        <h1 style="padding-left:16px; padding-right:16px; margin-top:8px; margin-bottom: 8px; font-size:24px">
+        {{data.title}}
+        </h1>
+        <p style="padding-left:16px; padding-right:16px; color:black; margin-top:0px; margin-bottom:0px; height:20px; overflow:hidden; text-align:justify">
+        {{data.content}}<br/>
+        </p>
+        <a style="padding-left:16px; padding-right:16px; font-weight:bold; color:#24afe5; text-decoration:none;" ng-click="postDetail('{{data.id}}')">See More</a>
+        <p style="padding-left:16px; padding-right:16px; color:black;">
+        <a class="subdued" ng-click="modal.show()">{{data.jumlahLike}} like</a>
+        <a class="subdued">{{data.jumlahKomentar}} comment</a>
+        <a class="subdued">{{data.jumlahSharer}} share</a>
+      </div>
+    </div>
+    <!--End List Posting-->
+  </ion-content>
+  <!--Create Post Button-->
+  <ion-buttons start id="floating-button" style="margin-right:10px; background-color:#24afe5;padding-top: 6px" onclick="location.href='#/app/create_post'">
+    <i class="icon mdi mdi-plus" style="font-size:40px;"></i>
+  </ion-buttons>
+  <!--End Create Post Button-->
+</ion-view>

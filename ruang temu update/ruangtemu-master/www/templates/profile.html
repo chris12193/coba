@@ -1,0 +1,48 @@
+<ion-view view-title="Profile" cache-view="false">
+<ion-nav-buttons side="right">
+  <a class="button button-clear" ng-href="#/app/edit_profile"><i class="icon ion-gear-a padding"></i></a>
+</ion-nav-buttons>
+<ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #ececec;">
+  <div style="background-image: url('https://static.pexels.com/photos/36487/above-adventure-aerial-air.jpg'); height:250px;padding-top:15px;">
+      <img ng-hide="profile.photo=='n/a'||profile.photo==undefined" ng-src={{profile.photo}} class="avatar" style="left:0px;right:0px;top:30px;margin:0px auto;width:80px;height:80px;">
+      <img ng-show="profile.photo=='n/a'||profile.photo==undefined" ng-src="img/profile.jpg" class="avatar" style="left:0px;right:0px;top:30px;margin:0px auto;width:80px;height:80px;">
+      <h1 style="color:white; margin-top:100px; text-align:center; font-size:18px;">{{profile.username}}</h1>
+      <p style="text-align:center; font-size:12px;"><a style="text-decoration:none;color:#ececec;" ng-href="#/app/change_password"><i class="icon ion-locked"></i> Change Password </a></p> 
+      <p style="color:#ececec; text-align:center; font-size:12px;">{{profile.poin}} poin</p>  
+      <p style="color:#ececec; text-align:center; font-size:12px;">{{profile.status_badge}} <i class="icon ion-android-pin" style="margin-left:10px;"></i> {{profile.location}}</p>
+  </div>
+
+  <div class="card" style="margin-left:30px; margin-right:30px; margin-top:-30px;">
+    <div class="item item-text-wrap">
+      <p>Bio</p>
+      {{profile.bio}}
+      <a>{{profile.link}}</a>
+    </div>
+  </div>
+  
+  <div class="card" style="margin-left:30px; margin-right:30px;">
+    <div class="item item-text-wrap">
+    <p>Badges</p>
+      <div class="row" style="padding-bottom:20px;">
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+      </div>
+      <div class="row">
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+        <div class="col"><img src="img/reward.png"></div>
+      </div>
+    </div>
+  </div>
+  </ion-content>
+  <!--Create Message-->
+  <ion-buttons start id="floating-button" style="margin-right:10px; background-color:#24afe5;" onclick="location.href='#/app/create_message'">
+    <i class="ion-chatboxes" style="font-size:30px"></i>
+  </ion-buttons>
+  <!--End Create Message-->
+</ion-view>

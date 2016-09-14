@@ -1,0 +1,107 @@
+<ion-view view-title="Home" title-center cache-view="false">
+ <!-- <search-bar ng-model="search"></search-bar> -->
+
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #ececec; z-index:0; margin-top:0px;">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()" refreshing-text="Fetching ..." refreshing-icon="ion-loading-b"></ion-refresher>
+
+     <div class="list card" style="margin:11px;">
+      <div class="item item-avatar" style="min-height:50px;padding-left:16px;">
+        <i class="icon ion-trophy" style="color:rgb(168, 162, 162);"></i>
+        <p style="margin:-20px 0px 0px 25px;color:#8b8b8b">Award Achieved . Updated 5 hours ago</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid; border-color: #ececec;">
+        <img ng-src="img/award.png" style="height:100px;margin-left:40px;">
+        <p class="item item-text-wrap" style="padding-left:160px;padding-right:0px;margin-top:-105px;margin-bottom:80px;font-size:16px;color:#030303">
+        Congratulation to our Most Active User,</p>
+        <p class="item item-text-wrap" style="padding-left:160px;padding-right:0px;margin-top:-110px;margin-bottom:30px;font-size:16px;color:#000000;font-weight:bold;" ng-click="userDetail('vinsmoke')">
+        Mr. Abhishek Shah</p>
+      </div>
+    </div>
+
+    <!--List Posting-->
+    <div class="list card" style="margin:11px;">
+      <div class="item item-avatar" style="min-height:10px;padding-left:16px;padding-bottom:0px;">
+        <i class="icon ion-thumbsup" style="color:rgb(168, 162, 162);"></i>
+        <p style="margin:-20px 0px 0px 25px;color:#8b8b8b">Most Liked Post</p>
+      </div>
+      <div class="item item-avatar" style="min-height: 60px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img ng-src="img/ben.png">
+        <h2 ng-click="userDetail('{{data.writer}}')">{{mostLiked.writer}}</h2>
+        <p>{{mostLiked.date | date:'yyyy-MM-dd, h:mm a'}}</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid; border-color: #ececec;">
+        <img class="full-image" ng-src="{{data.photo}}" ng-hide="data.photo=='n/a'||data.photo==undefined" style="height:250px;">
+        <h1 style="padding-left:16px; padding-right:16px; margin-top:8px; margin-bottom: 8px; font-size:24px">
+        {{mostLiked.title}}
+        </h1>
+        <p style="padding-left:16px; padding-right:16px; color:black; margin-top:0px; margin-bottom:0px; height:20px; overflow:hidden; text-align:justify">
+        {{mostLiked.content}}<br/>
+        </p>
+        <a style="padding-left:16px; padding-right:16px; font-weight:bold; color:#24afe5; text-decoration:none;" ng-click="postDetail('{{data.id}}')">See More</a>
+        <p style="padding-left:16px; padding-right:16px; color:black;">
+        <a class="subdued" ng-click="modal.show()">{{mostLiked.jumlahLike}} like</a>
+        <a class="subdued">{{mostLiked.jumlahKomentar}} comment</a>
+        <a class="subdued">{{mostLiked.jumlahSharer}} share</a>
+      </div>
+    </div>
+
+     <div class="list card" style="margin:11px;">
+      <div class="item item-avatar" style="min-height:10px;padding-left:16px;padding-bottom:0px;">
+        <i class="icon ion-thumbsup" style="color:rgb(168, 162, 162);"></i>
+        <p style="margin:-20px 0px 0px 25px;color:#8b8b8b">Most Commented Post</p>
+      </div>
+      <div class="item item-avatar" style="min-height: 60px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img ng-src="img/ben.png">
+        <h2 ng-click="userDetail('{{data.writer}}')">{{mostCommented.writer}}</h2>
+        <p>{{mostCommented.date | date:'yyyy-MM-dd, h:mm a'}}</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid; border-color: #ececec;">
+        <img class="full-image" ng-src="{{data.photo}}" ng-hide="data.photo=='n/a'||data.photo==undefined" style="height:250px;">
+        <h1 style="padding-left:16px; padding-right:16px; margin-top:8px; margin-bottom: 8px; font-size:24px">
+        {{mostCommented.title}}
+        </h1>
+        <p style="padding-left:16px; padding-right:16px; color:black; margin-top:0px; margin-bottom:0px; height:20px; overflow:hidden; text-align:justify">
+        {{mostCommented.content}}<br/>
+        </p>
+        <a style="padding-left:16px; padding-right:16px; font-weight:bold; color:#24afe5; text-decoration:none;" ng-click="postDetail('{{data.id}}')">See More</a>
+        <p style="padding-left:16px; padding-right:16px; color:black;">
+        <a class="subdued" ng-click="modal.show()">{{mostCommented.jumlahLike}} like</a>
+        <a class="subdued">{{mostCommented.jumlahKomentar}} comment</a>
+        <a class="subdued">{{mostCommented.jumlahSharer}} share</a>
+      </div>
+    </div>
+
+    <div class="list card" style="margin:11px;">
+      <div class="item item-avatar" style="min-height:10px;padding-left:16px;padding-bottom:0px;">
+        <i class="icon ion-thumbsup" style="color:rgb(168, 162, 162);"></i>
+        <p style="margin:-20px 0px 0px 25px;color:#8b8b8b">Most Shared Post</p>
+      </div>
+      <div class="item item-avatar" style="min-height: 60px; border-bottom: 1px solid rgb(242, 242, 242);">
+        <img ng-src="img/ben.png">
+        <h2 ng-click="userDetail('{{data.writer}}')">{{mostShared.writer}}</h2>
+        <p>{{mostShared.date | date:'yyyy-MM-dd, h:mm a'}}</p>
+      </div>
+      <div class="item item-body" style="padding-top:0px; padding-left:0px; padding-right:0px; padding-bottom:10px; border-bottom: 1px solid; border-color: #ececec;">
+        <img class="full-image" ng-src="{{data.photo}}" ng-hide="data.photo=='n/a'||data.photo==undefined" style="height:250px;">
+        <h1 style="padding-left:16px; padding-right:16px; margin-top:8px; margin-bottom: 8px; font-size:24px">
+        {{mostShared.title}}
+        </h1>
+        <p style="padding-left:16px; padding-right:16px; color:black; margin-top:0px; margin-bottom:0px; height:20px; overflow:hidden; text-align:justify">
+        {{mostShared.content}}<br/>
+        </p>
+        <a style="padding-left:16px; padding-right:16px; font-weight:bold; color:#24afe5; text-decoration:none;" ng-click="postDetail('{{data.id}}')">See More</a>
+        <p style="padding-left:16px; padding-right:16px; color:black;">
+        <a class="subdued" ng-click="modal.show()">{{mostShared.jumlahLike}} like</a>
+        <a class="subdued">{{mostShared.jumlahKomentar}} comment</a>
+        <a class="subdued">{{mostShared.jumlahSharer}} share</a>
+      </div>
+    </div>
+
+    <!--End List Posting-->
+  </ion-content>
+  <!--Create Post Button-->
+  <ion-buttons start id="floating-button" style="margin-right:10px; background-color:#24afe5;" onclick="location.href='#/app/create_post'">
+    <i class="icon ion-plus" style="font-size:30px"></i>
+  </ion-buttons>
+  <!--End Create Post Button-->
+</ion-view>

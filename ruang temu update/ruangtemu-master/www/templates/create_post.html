@@ -1,0 +1,65 @@
+<ion-view view-title="Create Post" hide-back-button="true" text-center cache-view="false">
+  <!-- Back button -->
+  <ion-nav-buttons side="left">
+    <button class="button button-clear icon-button mdi mdi-chevron-left" ng-click="back()" style="font-size:25px"></button>
+  </ion-nav-buttons>
+  <!-- Upload Image and Post button -->
+  <ion-nav-buttons side="right">
+    <button class="button button-clear icon-button mdi mdi-attachment" ng-click="uploadImage()" style="min-height:0;font-size:25px"></button>
+    <button class="button button-clear icon-button mdi mdi-send" ng-click="addPost()" style="min-height:0;font-size:25px"></button>
+  </ion-nav-buttons>
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color:#fff;">
+    <!-- Form post -->
+    <form method="post" enctype="text/plain">    
+      <!-- Divsion, Privacy and Label Option -->
+      <div class="button-bar">
+        <button id="share" ng-click="Share = !Share; Privacy = false; Category = false;" class="button mdi mdi-account-multiple" style="padding-top:10px; border-radius:0px; background:#24afe5; color:white;font-size:25px">
+        </button>
+        <button ng-click="Privacy = !Privacy; Share = false; Category = false;" class="button mdi mdi-lock" style="padding-top:10px; background:#24afe5; color:white;font-size:25px">
+        </button>
+        <button ng-click="Category = !Category; Privacy = false; Share = false;" class="button mdi mdi-tag" style="padding-top:10px; border-radius:0px; background:#24afe5; color:white;font-size:25px">
+        </button>
+      </div>
+      <!-- Division Option -->
+      <ul ng-show="Share" class="list" style="background:#fafafa;">
+        <div style="padding: 5px">
+          <b ng-model="selectall"  ng-hide="selectall; data.div_gbs == true || data.div_jti == true" ng-click="data.div_jti = true; data.div_gbs = true; deselectall = !deselectall; selectall = !selectall">Select All</b>
+          <b ng-model="deselectall" ng-show="deselectall;  data.div_gbs == true || data.div_jti == true" ng-click="data.div_jti = false; data.div_gbs = false; deselectall = !deselectall; selectall = !selectall">Deselect All</b>
+        </div>
+        <ion-list>
+          <!-- make ng repeat here           -->
+          <ion-checkbox ng-model="data.division[data.writer]" ng-checked=true>General Business Solution</ion-checkbox>
+        </ion-list>
+      </ul>
+      <!-- Privacy Option -->
+      <ul ng-show="Privacy" class="list" style="background:#fafafa;">
+        <ion-list>
+          <ion-radio ng-model="data.privacy" ng-value="'public'" ng-checked=true>Public</ion-radio>
+          <ion-radio ng-model="data.privacy" ng-value="'internal'">Internal Only</ion-radio>
+        </ion-list>
+      </ul>
+      <!-- Category Option -->
+      <ul ng-show="Category" class="list" style="background:#fafafa;">
+        <ion-list>
+          <!-- make ng repeat here           -->
+          <ion-checkbox ng-model="data.tag[data.writer]">Technology</ion-checkbox>
+        </ion-list>
+      </ul>
+      <!-- Priority Option -->
+      <ion-toggle ng-model="data.priority" toggle-class="toggle-calm">Important</ion-toggle>
+      <!-- Image Priview -->
+      <img ng-src="{{image}}" width="100%" style="height:250px;border:none;width:100%;height:auto"/> 
+      <!-- Input Text -->
+      <div class="list padding">
+        <label class="item item-input item-floating-label" style="padding:0">
+        <span class="input-label">Title</span>
+        <input id="title" type="text" placeholder="Title" ng-model="data.title">
+        </label>
+        <label class="item item-input item-floating-label" style="padding:0">
+        <span class="input-label">Content Information</span>
+        <textarea id="content" style="height:200px;background:transparent;resize:none" placeholder="Content Information" ng-model="data.content"></textarea>
+        </label>
+      </div> 
+    </form>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,36 @@
+<ion-view view-title="Message " cache-view="false">
+  <ion-content overflow-scroll=true scroll-sista="tabs" style="background-color: #F1F5F8;">
+    <!-- Tab navigation -->
+    <div class="tabs-striped tabs-top tabs-background-positive tabs-color-light" ng-app="">
+      <div class="tabs" style="background:#24afe5;top:0px;">
+        <a class="tab-item" ng-click="showme=false" ng-class="{'active':showme == false}">
+          <i class="mdi mdi-message" style="font-size:25px;margin-top: 13px"></i>
+        </a>
+        <a class="tab-item" ng-click="showme=true" ng-class="{'active':showme == true}">
+          <i class="mdi mdi-account-multiple" style="font-size:25px;margin-top: 13px"></i>
+        </a>
+      </div>
+    </div>
+    <!-- List of last messages -->
+    <div class="list" ng-hide="showme">
+     <div style="margin-top:50px"></div>
+      <a class="item item-avatar" ng-repeat="data in arrMessage" style="border-bottom:1px solid #cecece" ng-click="userDetail('{{data.receiver}}')">
+        <img src="img\ben.png">
+        <h2>{{data.receiver}}</h2>
+        <p>{{data.content}}</p>
+      </a>
+    </div>
+    <!-- List of contacts-->
+    <div class="list" ng-show="showme">
+      <div style="margin-top:50px"></div>
+      <a ng-repeat="data in contacts" class="item item-avatar" style="border-bottom:1px solid #cecece" ng-click="userDetail('{{data.username}}')">
+        <img src="img\ben.png">
+        <h2>{{data.name}}</h2>
+        <p>Busy</p>
+      </a>  
+    </div>
+  </ion-content>
+</ion-view>
+
+
+ 
